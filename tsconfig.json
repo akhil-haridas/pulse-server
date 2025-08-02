@@ -18,10 +18,10 @@
       "@utils": ["./utils/index.ts"],
       "@validations": ["./validations/index.ts"]
     },
-    "strict": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "strict": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
