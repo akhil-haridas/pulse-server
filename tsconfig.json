@@ -7,7 +7,37 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@app/*": [
+                "./app"
+            ],
+            "@routes/*": [
+                "./routes/*"
+            ],
+            "@controllers/*": [
+                "./controllers/*"
+            ],
+            "@services/*": [
+                "./services/*"
+            ],
+            "@middlewares/*": [
+                "./middlewares/*"
+            ],
+            "@models/*": [
+                "./models/*"
+            ],
+            "@config/*": [
+                "./config/*"
+            ],
+            "@utils/*": [
+                "./utils/*"
+            ],
+            "@validations/*": [
+                "./validations/*"
+            ]
+        }
     },
     "include": [
         "src"
