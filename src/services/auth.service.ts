@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import prisma from "@prisma";
-import { RegisterInput, LoginInput } from "@validations/auth.schema";
+import { RegisterInput, LoginInput } from "@validations";
 
 export const registerUser = async (data: RegisterInput) => {
     const hashedPassword = await bcrypt.hash(data.password, 10);

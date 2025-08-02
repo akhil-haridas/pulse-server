@@ -1,1 +1,1 @@
-// Validation schemas exports
+export * from "./auth.schema";

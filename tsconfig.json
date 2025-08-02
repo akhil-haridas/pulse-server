@@ -16,28 +16,28 @@
             "@prisma": [
                 "./prisma/prisma.ts"
             ],
-            "@routes/*": [
+            "@routes": [
                 "./routes/index.ts"
             ],
-            "@controllers/*": [
+            "@controllers": [
                 "./controllers/index.ts"
             ],
-            "@services/*": [
+            "@services": [
                 "./services/index.ts"
             ],
-            "@middlewares/*": [
+            "@middlewares": [
                 "./middlewares/index.ts"
             ],
-            "@models/*": [
+            "@models": [
                 "./models/index.ts"
             ],
-            "@config/*": [
+            "@config": [
                 "./config/index.ts"
             ],
-            "@utils/*": [
+            "@utils": [
                 "./utils/index.ts"
             ],
-            "@validations/*": [
+            "@validations": [
                 "./validations/index.ts"
             ]
         }
