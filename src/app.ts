@@ -22,7 +22,7 @@ app.use("/api/reports", reportRoutes);
 
 // Health check route
 app.get("/api/ping", (_req, res) => {
-  res.status(200).json({ message: "pong" });
+    res.status(200).json({ message: "pong" });
 });
 
 export default app;
