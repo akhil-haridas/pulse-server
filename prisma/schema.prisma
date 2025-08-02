@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
@@ -18,13 +18,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  DailyLog DailyLog[]
+  dailyLog dailyLog[]
 }
 
-model DailyLog {
+model dailyLog {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      user     @relation(fields: [userId], references: [id])
   date      DateTime @default(now()) @db.Date
   content   String
   createdAt DateTime @default(now())
