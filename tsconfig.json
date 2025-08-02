@@ -10,7 +10,9 @@
         "forceConsistentCasingInFileNames": true,
         "baseUrl": "./src",
         "paths": {
-            "@app": ["./app.ts"],
+            "@app": [
+                "./app.ts"
+            ],
             "@routes/*": [
                 "./routes/*"
             ],
