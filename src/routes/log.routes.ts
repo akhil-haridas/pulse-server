@@ -1,15 +1,17 @@
 import express from "express";
 import { authenticate, validate } from "@middlewares";
-import { createLogSchema, updateLogSchema } from "@validations";
-import { createLog, getLogs, updateLog, deleteLog } from "@controllers";
+
+import { CreateLogSchema, GetLogByDateSchema, UpdateLogSchema } from "@validations";
+import { getMyLogs, getLogByDateHandler, deleteDailyLog, updateDailyLog, createLogHandler } from "@controllers";
 
 const router = express.Router();
 
 router.use(authenticate);
 
-router.get("/", getLogs);
-router.post("/", validate(createLogSchema), createLog);
-router.put("/:id", validate(updateLogSchema), updateLog);
-router.delete("/:id", deleteLog);
+router.post("/", validate(CreateLogSchema), createLogHandler);
+router.get("/", getMyLogs);
+router.get("/:date", validate(GetLogByDateSchema), getLogByDateHandler);
+router.patch("/:id", validate(UpdateLogSchema), updateDailyLog);
+router.delete("/:id", deleteDailyLog);
 
 export default router;

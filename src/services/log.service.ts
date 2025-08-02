@@ -1,7 +1,7 @@
 import prisma from "@prisma";
 import { CreateLogInput, GetLogByDateInput, UpdateLogInput } from "@validations";
 
-export const createDailyLog = (userId: string, data: CreateLogInput) => {
+export const createLog = (userId: string, data: CreateLogInput) => {
     return prisma.dailyLog.create({
         data: {
             userId,
@@ -18,15 +18,15 @@ export const getUserLogs = (userId: string) => {
     });
 };
 
-export const getLogByDate = async (userId: string, data: GetLogByDateInput) => {
+export const getLogByDate = async (data: GetLogByDateInput) => {
     const targetDate = new Date(data.date);
     return await prisma.dailyLog.findFirst({
-        where: { userId, date: targetDate },
+        where: { userId: data.userId, date: targetDate },
     });
 };
 
 export const updateLog = (logId: string, data: UpdateLogInput) => {
-    return prisma.dailyLog.update({
+    return prisma.dailyLog.updateMany({
         where: { id: logId },
         data: {
             content: data.content,
@@ -35,6 +35,6 @@ export const updateLog = (logId: string, data: UpdateLogInput) => {
     });
 };
 
-export const deleteLog = (logId: string) => {
-    return prisma.dailyLog.delete({ where: { id: logId } });
+export const deleteLog = (logId: string, { userId }: { userId: string }) => {
+    return prisma.dailyLog.deleteMany({ where: { id: logId, userId } });
 };
