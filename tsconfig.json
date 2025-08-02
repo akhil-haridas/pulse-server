@@ -13,6 +13,9 @@
             "@app": [
                 "./app.ts"
             ],
+            "@prisma": [
+                "./prisma/prisma.ts"
+            ],
             "@routes/*": [
                 "./routes/*"
             ],
