@@ -14,7 +14,7 @@
                 "./app.ts"
             ],
             "@prisma": [
-                "./prisma/prisma.ts"
+                "./models/prisma.ts"
             ],
             "@routes": [
                 "./routes/index.ts"

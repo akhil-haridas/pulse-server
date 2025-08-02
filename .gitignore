@@ -18,3 +18,5 @@ Thumbs.db
 # Existing entry
 SSas
 /src/generated/prisma
+
+/src/generated/prisma
