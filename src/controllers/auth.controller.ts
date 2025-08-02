@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { loginUser, registerUser } from "@services";
-import { signToken } from "@utils";
+import { signToken, verifyToken } from "@utils";
 
 export const register = async (req: Request, res: Response) => {
     try {
@@ -24,5 +24,22 @@ export const login = async (req: Request, res: Response) => {
         });
     } catch (err: any) {
         res.status(401).json({ error: err.message });
+    }
+};
+
+export const refreshAccessToken = async (req: Request, res: Response) => {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+        return res.status(400).json({ error: "Refresh token required" });
+    }
+
+    try {
+        const decoded = verifyToken(refreshToken) as { userId: string };
+        const accessToken = signToken({ userId: decoded.userId }, "15m");
+
+        res.status(200).json({ accessToken });
+    } catch (err: any) {
+        res.status(401).json({ error: "Invalid or expired refresh token" });
     }
 };
