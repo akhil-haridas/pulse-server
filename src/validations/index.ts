@@ -1,3 +1,3 @@
-export * from "./auth.schema";
+export * from "./auth.validation";
 export * from "./user.schema";
 export * from "./log.schema";

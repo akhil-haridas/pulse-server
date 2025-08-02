@@ -1,2 +1,2 @@
-export { validate } from "./validate.middleware";
+export { validate } from "./validate";
 export { authenticate, AuthenticatedRequest } from "./auth.middleware";
