@@ -17,24 +17,28 @@ export const login = async (req: Request, res: Response) => {
         const accessToken = signToken({ userId: user.id }, "15m");
         const refreshToken = signToken({ userId: user.id }, "7d");
 
+        res.cookie("refresh_token", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        });
+
         res.status(200).json({
             user: { id: user.id, email: user.email, name: user.name },
             accessToken,
-            refreshToken,
         });
+
     } catch (err: any) {
         res.status(401).json({ error: err.message });
     }
 };
 
 export const refreshAccessToken = async (req: Request, res: Response) => {
-    const { refreshToken } = req.body;
-
-    if (!refreshToken) {
-        return res.status(400).json({ error: "Refresh token required" });
-    }
-
     try {
+        const refreshToken = req.cookies.refresh_token;
+        if (!refreshToken) return res.status(400).json({ error: "Missing refresh token" });
+
         const decoded = verifyToken(refreshToken) as { userId: string };
         const accessToken = signToken({ userId: decoded.userId }, "15m");
 
@@ -42,4 +46,9 @@ export const refreshAccessToken = async (req: Request, res: Response) => {
     } catch (err: any) {
         res.status(401).json({ error: "Invalid or expired refresh token" });
     }
+};
+
+export const logout = (_req: Request, res: Response) => {
+    res.clearCookie("refresh_token");
+    res.status(200).json({ message: "Logged out successfully" });
 };
