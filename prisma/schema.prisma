@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model User {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
@@ -17,20 +17,6 @@ model user {
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  dailyLog dailyLog[]
-}
-
-model dailyLog {
-  id        String   @id @default(uuid())
-  userId    String
-  user      user     @relation(fields: [userId], references: [id])
-  date      DateTime @default(now()) @db.Date
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId, date])
 }
 
 enum Role {
