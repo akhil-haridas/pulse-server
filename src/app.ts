@@ -1,1 +1,18 @@
-// Express app setup will go here
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const app = express();
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Health check route
+app.get("/api/health", (_req, res) => {
+    res.json({ status: "OK", message: "Server is healthy" });
+});
+
+export default app;
