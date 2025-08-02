@@ -1,5 +1,5 @@
 import prisma from "@prisma";
-import { CreateLogInput, UpdateLogInput } from "@validations";
+import { CreateLogInput, GetLogByDateInput, UpdateLogInput } from "@validations";
 
 export const createDailyLog = (userId: string, data: CreateLogInput) => {
     return prisma.dailyLog.create({
@@ -18,7 +18,14 @@ export const getUserLogs = (userId: string) => {
     });
 };
 
-export const updateDailyLog = (logId: string, data: UpdateLogInput) => {
+export const getLogByDate = async (userId: string, data: GetLogByDateInput) => {
+    const targetDate = new Date(data.date);
+    return await prisma.dailyLog.findFirst({
+        where: { userId, date: targetDate },
+    });
+};
+
+export const updateLog = (logId: string, data: UpdateLogInput) => {
     return prisma.dailyLog.update({
         where: { id: logId },
         data: {
@@ -28,6 +35,6 @@ export const updateDailyLog = (logId: string, data: UpdateLogInput) => {
     });
 };
 
-export const deleteDailyLog = (logId: string) => {
+export const deleteLog = (logId: string) => {
     return prisma.dailyLog.delete({ where: { id: logId } });
 };
