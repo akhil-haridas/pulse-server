@@ -4,6 +4,6 @@ import { getMyMonthlyReport } from "@controllers";
 
 const router = express.Router();
 
-router.get("/me", authenticate, getMyMonthlyReport);
+router.get("/:month", authenticate, getMyMonthlyReport);
 
 export default router;
