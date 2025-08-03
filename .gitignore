@@ -16,5 +16,5 @@ build/
 Thumbs.db
 
 # Existing entry
-/src/generated/prisma
+/src/generated
 
